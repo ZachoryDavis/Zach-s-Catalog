@@ -23,23 +23,28 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
+//To Add: https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Omori_cover.jpg/250px-Omori_cover.jpg
+//To Keep: https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg
+const HOLLOW_KNIGHT_URL =
+  "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Hollow_Knight_first_cover_art.webp/220px-Hollow_Knight_first_cover_art.webp.png";
+const OMORI_URL =
+  "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Omori_cover.jpg/250px-Omori_cover.jpg";
+const THE_BINDING_OF_ISAAC_REBIRTH_URL =
+  "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/The_Binding_of_Issac_Rebirth_cover.jpg/250px-The_Binding_of_Issac_Rebirth_cover.jpg";
 
 // This is an array of strings (TV show titles)
 let titles = [
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
+  "Hollow Knight",
+  "Omori",
+  "The Binding of Isaac Rebirth",
 ];
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
 // This function adds cards the page to display the data in the array
+
+
+
 function showCards() {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
@@ -52,11 +57,11 @@ function showCards() {
     // own data, you'll need to do something totally different here.
     let imageURL = "";
     if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
+      imageURL = HOLLOW_KNIGHT_URL;
     } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
+      imageURL = OMORI_URL;
     } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
+      imageURL = THE_BINDING_OF_ISAAC_REBIRTH_URL;
     }
 
     const nextCard = templateCard.cloneNode(true); // Copy the template card
@@ -64,6 +69,10 @@ function showCards() {
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
+
+
+
+
 
 function editCardContent(card, newTitle, newImageURL) {
   card.style.display = "block";
