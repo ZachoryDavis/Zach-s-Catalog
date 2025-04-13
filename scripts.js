@@ -23,32 +23,33 @@
  *
  */
 
-// Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
 //This function now draws out the already paired titles and images im a
 //much faster and practical way using a csv file
 async function loadCSV() {
-  const response = await fetch("Game_List.csv");
+  const response = await fetch("Game_List.csv"); // Fetch the CSV file named "Game_List.csv"
 
-  if (!response.ok) {
+  if (!response.ok) { // Check if the file was successfully loaded
     console.error("Failed to load CSV:", response.statusText);
     return [];
   }
 
-  const data = await response.text();
-  console.log("CSV Raw Data:", data); // Debugging output
+  const data = await response.text(); // Convert the CSV file content into text format
+  console.log("CSV Raw Data:", data); // Debugging output to verify raw CSV contents
 
-  const rows = data.split("\n").slice(1); // Skip the header row
-  console.log("CSV Rows:", rows); // Debugging output
+  const rows = data.split("\n").slice(1); // Skip the header row as it is used to lable the coloums
+  console.log("CSV Rows:", rows); 
 
-  let gameData = [];
+  let gameData = []; // Create an empty array to store extracted game data as objects!
+
   rows.forEach(row => {
-    let columns = row.split(",");
-    if (columns.length >= 2) {
-      let title = columns[0].trim();
-      let imageURL = columns[1].trim();
-      gameData.push({ title, imageURL });
+    let columns = row.split(","); // Split each row into separate values using a comma (CSV format)
+    if (columns.length >= 3) {
+      let title = columns[0].trim(); //.trim() just removes any spaces in front or after title
+      let imageURL = columns[1].trim(); // especially here spaces could break my code
+      let genre = columns[2].trim().split("|"); //split here allows me to add mult. genres without mult new col.
+      gameData.push({ title, imageURL, genre });
     }
   });
 
@@ -62,11 +63,11 @@ async function showCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-    const gameData = await loadCSV(); // Load CSV Data
+    const gameData = await loadCSV(); // Load the game data from CSV
 
     gameData.forEach(game => {
       const nextCard = templateCard.cloneNode(true); // Copy template card
-      editCardContent(nextCard, game.title, game.imageURL); // Populate card
+      editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
       cardContainer.appendChild(nextCard); // Add to container
     });
 }
@@ -75,7 +76,7 @@ async function showCards() {
 
 
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, newTitle, newImageURL, newGenre) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
@@ -85,6 +86,15 @@ function editCardContent(card, newTitle, newImageURL) {
   cardImage.src = newImageURL;
   cardImage.alt = newTitle + " Poster";
 
+  // Populate the details list dynamically
+  const cardList = card.querySelector("ul");
+  cardList.innerHTML = ""; // Clear existing list
+
+  newGenre.forEach(detail => {
+    const listItem = document.createElement("li");
+    listItem.textContent = detail;
+    cardList.appendChild(listItem);
+  });
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
@@ -94,12 +104,38 @@ function editCardContent(card, newTitle, newImageURL) {
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
+
+let selectedGameTitle = ""; //we can store a selected card title to use later
+
+function selectGame(card) {
+  selectedGameTitle = card.querySelector("h2").textContent; // Get game title from the card
+  console.log("Selected Game:", selectedGameTitle); // Debugging log
 }
+
+
+async function gameDescription() {
+  if (!selectedGameTitle) {
+    alert("Please select a game first!");
+    return;
+  }
+
+  const response = await fetch("game_descriptions.json");
+  if (!response.ok) {
+    console.error("Failed to load descriptions:", response.statusText);
+    alert("Description could not be retrieved.");
+    return;
+  }
+
+  const descriptions = await response.json();
+  const description = descriptions[selectedGameTitle]; // Find description
+
+  if (description) {
+    alert(description); // Show the correct game description
+  } else {
+    alert("No description available for this game.");
+  }
+}
+
 
 function removeLastCard() {
   titles.pop(); // Remove last item in titles array

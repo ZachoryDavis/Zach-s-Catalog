@@ -12,10 +12,10 @@
       <h1 class="title">MyVideoGameList</h1>
     </header>
     <div id="card-container"></div>  <!-- where dynamic TV show cards will be added using JavaScript -->
-    <div class="card" style="display: none">
+    <div class="card" style="display: none" onclick="selectGame(this)">
       <div class="card-content">
         <h2>Game Title</h2>
-       <img src="" alt="TV Show Poster" /> <!-- -->
+       <img src="" alt="Game Poster" /> <!-- -->
         <ul>
           <li>Bullet Point 1</li>
           <li>Bullet Point 2</li>
@@ -24,7 +24,8 @@
       </div>
     </div>
     <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
+      <button onclick="gameDescription(this.getAttribute('data-title'))" data-title="Game Title"> <!-- New button for Game description-->
+        Get Description!</button>
       <button onclick="removeLastCard();">Remove A Card!</button>
     </div>
   </body>
