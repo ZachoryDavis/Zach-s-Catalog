@@ -49,7 +49,8 @@ async function loadCSV() {
       let title = columns[0].trim(); //.trim() just removes any spaces in front or after title
       let imageURL = columns[1].trim(); // especially here spaces could break my code
       let genre = columns[2].trim().split("|"); //split here allows me to add mult. genres without mult new col.
-      gameData.push({ title, imageURL, genre });
+      let favorite = columns[3].trim().toLowerCase() === "false";
+      gameData.push({ title, imageURL, genre, favorite });
     }
   });
 
@@ -58,7 +59,7 @@ async function loadCSV() {
 }
 
 
-async function showCards() {
+async function showHomeCards() {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
@@ -102,7 +103,7 @@ function editCardContent(card, newTitle, newImageURL, newGenre) {
 }
 
 // This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", showHomeCards);
 
 
 let selectedGameTitle = ""; //we can store a selected card title to use later
@@ -137,7 +138,19 @@ async function gameDescription() {
 }
 
 
-function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
+async function favoriteCard() {
+  if (!selectedGameTitle) {
+    alert("Please select a game first!");
+    return;
+  }
+
+  gameData = await loadCSV();
+
+  let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
+  
+  if (game.favorite === false) { // If the favorite value is false
+    game.favorite = !game.favorite; // Then set it to true
+  }
+
+  console.log(game.favorite);
 }
