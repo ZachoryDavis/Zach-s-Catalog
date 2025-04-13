@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>MyVideoGameList | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <meta name="description" content="A Catalog of Games to categorize" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="scripts.js"></script>
   </head>
@@ -10,6 +10,11 @@
   <body>
     <header class="main-header">
       <h1 class="title">MyVideoGameList</h1>
+      <nav class="button-nav">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='favorites.html'">Favorites</button>
+        <button onclick="location.href='wishlist.html'">Wishlist</button>
+    </nav>
     </header>
     <div id="card-container"></div>  <!-- where dynamic TV show cards will be added using JavaScript -->
     <div class="card" style="display: none" onclick="selectGame(this)">
@@ -26,7 +31,7 @@
     <div class="footer">
       <button onclick="gameDescription(this.getAttribute('data-title'))" data-title="Game Title"> <!-- New button for Game description-->
         Get Description!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
+      <button onclick="removeLastCard();">Favorite!</button>
     </div>
   </body>
 </html>

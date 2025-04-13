@@ -127,8 +127,8 @@ async function gameDescription() {
   }
 
   const descriptions = await response.json();
-  const description = descriptions[selectedGameTitle]; // Find description
-
+  const description = descriptions[selectedGameTitle]; // Find description in json using stored title
+  //                                                      but also ignors the title itself
   if (description) {
     alert(description); // Show the correct game description
   } else {
