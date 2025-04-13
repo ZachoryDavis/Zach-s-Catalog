@@ -27,7 +27,15 @@
 
 //This function now draws out the already paired titles and images im a
 //much faster and practical way using a csv file
+
 async function loadCSV() {
+
+// Check if sessionStorage has saved game data, otherwise load from CSV
+const savedGameData = sessionStorage.getItem("gameData");
+if (savedGameData) {
+  return JSON.parse(savedGameData);
+}
+
   const response = await fetch("Game_List.csv"); // Fetch the CSV file named "Game_List.csv"
 
   if (!response.ok) { // Check if the file was successfully loaded
@@ -45,16 +53,20 @@ async function loadCSV() {
 
   rows.forEach(row => {
     let columns = row.split(","); // Split each row into separate values using a comma (CSV format)
-    if (columns.length >= 3) {
+    if (columns.length >= 4) {
       let title = columns[0].trim(); //.trim() just removes any spaces in front or after title
       let imageURL = columns[1].trim(); // especially here spaces could break my code
       let genre = columns[2].trim().split("|"); //split here allows me to add mult. genres without mult new col.
-      let favorite = columns[3].trim().toLowerCase() === "false";
-      gameData.push({ title, imageURL, genre, favorite });
+      let favorited = columns[3]?.trim().toLowerCase() === "true"; // checks if string matched and returns bool
+      gameData.push({ title, imageURL, genre, favorited });
     }
   });
 
   console.log("Parsed Game Data:", gameData); // Debugging output
+
+//Store in sessionStorage so changes persist within the session
+sessionStorage.setItem("gameData", JSON.stringify(gameData));
+
   return gameData;
 }
 
@@ -64,17 +76,34 @@ async function showHomeCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-    const gameData = await loadCSV(); // Load the game data from CSV
+  const gameData = await loadCSV(); // Load the game data from CSV
 
-    gameData.forEach(game => {
-      const nextCard = templateCard.cloneNode(true); // Copy template card
-      editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
-      cardContainer.appendChild(nextCard); // Add to container
-    });
+  gameData.forEach(game => {
+    const nextCard = templateCard.cloneNode(true); // Copy template card
+    editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
+    cardContainer.appendChild(nextCard); // Add to container
+  });
 }
 
 
+async function showFavoriteCards() {
+  const favoritesContainer = document.getElementById("favorites-container");
+  favoritesContainer.innerHTML = ""; // Clear previous content
 
+  let gameData = JSON.parse(sessionStorage.getItem("gameData"));// || await loadCSV(); 
+
+  const favoriteGames = gameData.filter(game => game.favorited);
+
+  const templateCard = document.querySelector(".card");
+
+  favoriteGames.forEach(game => {
+    const nextCard = templateCard.cloneNode(true); // Copy template card
+    editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
+    nextCard.style.display = "block"; // Ensure the card is visible
+    favoritesContainer.appendChild(nextCard); // Add to container
+    }
+  )
+}
 
 
 function editCardContent(card, newTitle, newImageURL, newGenre) {
@@ -148,9 +177,12 @@ async function favoriteCard() {
 
   let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
   
-  if (game.favorite === false) { // If the favorite value is false
-    game.favorite = !game.favorite; // Then set it to true
+  if (game.favorited === false) { // If the favorite value is false
+    game.favorited = !game.favorited; // Then set it to true
+
+    sessionStorage.setItem("gameData", JSON.stringify(gameData)); //Update sessionStorage
   }
 
-  console.log(game.favorite);
+  showFavoriteCards();
+  console.log(game.favorited);
 }

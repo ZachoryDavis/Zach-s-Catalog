@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: #2e2e2e;
 }
 
 .main-header {
@@ -30,6 +31,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 5px;
+  background-color: white;
 }
 
 .card-content {
@@ -67,4 +69,11 @@ button {
   font-size: 22px;
   cursor: pointer;
   margin: 5px;
+}
+
+#favorites-container {
+  display: flex; /* Arrange cards in a row */
+  flex-wrap: wrap; /* Allow wrapping to new rows if needed */
+  justify-content: center; /* Center cards horizontally */
+  gap: 10px; /* Adds space between cards */
 }

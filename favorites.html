@@ -17,5 +17,20 @@
             <button onclick="location.href='wishlist.html'">Wishlist</button>
         </nav>
       </header>
+      <div id="favorites-container"></div>
+      <div class="card" style="display: none">
+        <div class="card-content">
+          <h2>Game Title</h2>
+          <img src="" alt="Game Poster" />
+          <ul>
+            <li>Bullet Point 1</li>
+            <li>Bullet Point 2</li>
+            <li>Bullet Point 3</li>
+          </ul>
+        </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", showFavoriteCards);
+      </script>
 </body>
 </html>
