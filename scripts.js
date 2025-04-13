@@ -23,51 +23,52 @@
  *
  */
 
-//To Add: https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Omori_cover.jpg/250px-Omori_cover.jpg
-//To Keep: https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg
-const HOLLOW_KNIGHT_URL =
-  "https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Hollow_Knight_first_cover_art.webp/220px-Hollow_Knight_first_cover_art.webp.png";
-const OMORI_URL =
-  "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Omori_cover.jpg/250px-Omori_cover.jpg";
-const THE_BINDING_OF_ISAAC_REBIRTH_URL =
-  "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/The_Binding_of_Issac_Rebirth_cover.jpg/250px-The_Binding_of_Issac_Rebirth_cover.jpg";
-
-// This is an array of strings (TV show titles)
-let titles = [
-  "Hollow Knight",
-  "Omori",
-  "The Binding of Isaac Rebirth",
-];
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
-// This function adds cards the page to display the data in the array
+//This function now draws out the already paired titles and images im a
+//much faster and practical way using a csv file
+async function loadCSV() {
+  const response = await fetch("Game_List.csv");
+
+  if (!response.ok) {
+    console.error("Failed to load CSV:", response.statusText);
+    return [];
+  }
+
+  const data = await response.text();
+  console.log("CSV Raw Data:", data); // Debugging output
+
+  const rows = data.split("\n").slice(1); // Skip the header row
+  console.log("CSV Rows:", rows); // Debugging output
+
+  let gameData = [];
+  rows.forEach(row => {
+    let columns = row.split(",");
+    if (columns.length >= 2) {
+      let title = columns[0].trim();
+      let imageURL = columns[1].trim();
+      gameData.push({ title, imageURL });
+    }
+  });
+
+  console.log("Parsed Game Data:", gameData); // Debugging output
+  return gameData;
+}
 
 
-
-function showCards() {
+async function showCards() {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
+    const gameData = await loadCSV(); // Load CSV Data
 
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = HOLLOW_KNIGHT_URL;
-    } else if (i == 1) {
-      imageURL = OMORI_URL;
-    } else if (i == 2) {
-      imageURL = THE_BINDING_OF_ISAAC_REBIRTH_URL;
-    }
-
-    const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
-    cardContainer.appendChild(nextCard); // Add new card to the container
-  }
+    gameData.forEach(game => {
+      const nextCard = templateCard.cloneNode(true); // Copy template card
+      editCardContent(nextCard, game.title, game.imageURL); // Populate card
+      cardContainer.appendChild(nextCard); // Add to container
+    });
 }
 
 
