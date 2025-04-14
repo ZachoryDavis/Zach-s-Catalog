@@ -77,3 +77,10 @@ button {
   justify-content: center; /* Center cards horizontally */
   gap: 10px; /* Adds space between cards */
 }
+
+#wishlists-container {
+  display: flex; /* Arrange cards in a row */
+  flex-wrap: wrap; /* Allow wrapping to new rows if needed */
+  justify-content: center; /* Center cards horizontally */
+  gap: 10px; /* Adds space between cards */
+}

@@ -18,7 +18,7 @@
         </nav>
       </header>
       <div id="favorites-container"></div>
-      <div class="card" style="display: none">
+      <div class="card" style="display: none" onclick="selectGame(this)">
         <div class="card-content">
           <h2>Game Title</h2>
           <img src="" alt="Game Poster" />
@@ -28,6 +28,9 @@
             <li>Bullet Point 3</li>
           </ul>
         </div>
+      </div>
+      <div class="footer">
+        <button onclick="removeFavoriteCard();">Remove Favorite!</button>
       </div>
       <script>
         document.addEventListener("DOMContentLoaded", showFavoriteCards);

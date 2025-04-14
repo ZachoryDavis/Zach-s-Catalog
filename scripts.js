@@ -1,32 +1,6 @@
-/**
- * Data Catalog Project Starter Code - SEA Stage 2
- *
- * This file is where you should be doing most of your work. You should
- * also make changes to the HTML and CSS files, but we want you to prioritize
- * demonstrating your understanding of data structures, and you'll do that
- * with the JavaScript code you write in this file.
- *
- * The comments in this file are only to help you learn how the starter code
- * works. The instructions for the project are in the README. That said, here
- * are the three things you should do first to learn about the starter code:
- * - 1 - Change something small in index.html or style.css, then reload your
- *    browser and make sure you can see that change.
- * - 2 - On your browser, right click anywhere on the page and select
- *    "Inspect" to open the browser developer tools. Then, go to the "console"
- *    tab in the new window that opened up. This console is where you will see
- *    JavaScript errors and logs, which is extremely helpful for debugging.
- *    (These instructions assume you're using Chrome, opening developer tools
- *    may be different on other browsers. We suggest using Chrome.)
- * - 3 - Add another string to the titles array a few lines down. Reload your
- *    browser and observe what happens. You should see a fourth "card" appear
- *    with the string you added to the array, but a broken image.
- *
- */
 
-// you should use more than just an array of strings to store it all.
 
-//This function now draws out the already paired titles and images im a
-//much faster and practical way using a csv file
+//ADD EXCEPTION CHECKS FOR ALL FETCH CASES TO ENSURE NO THROW OR ROLLBACK
 
 async function loadCSV() {
 
@@ -53,12 +27,13 @@ if (savedGameData) {
 
   rows.forEach(row => {
     let columns = row.split(","); // Split each row into separate values using a comma (CSV format)
-    if (columns.length >= 4) {
+    if (columns.length >= 5) {
       let title = columns[0].trim(); //.trim() just removes any spaces in front or after title
       let imageURL = columns[1].trim(); // especially here spaces could break my code
       let genre = columns[2].trim().split("|"); //split here allows me to add mult. genres without mult new col.
       let favorited = columns[3]?.trim().toLowerCase() === "true"; // checks if string matched and returns bool
-      gameData.push({ title, imageURL, genre, favorited });
+      let wishlisted = columns[4]?.trim().toLowerCase() === "true";
+      gameData.push({ title, imageURL, genre, favorited, wishlisted });
     }
   });
 
@@ -90,10 +65,10 @@ async function showFavoriteCards() {
   const favoritesContainer = document.getElementById("favorites-container");
   favoritesContainer.innerHTML = ""; // Clear previous content
 
-  let gameData = JSON.parse(sessionStorage.getItem("gameData"));// || await loadCSV(); 
+  // || await loadCSV() is a fallback mechanism in case sessionStorage.getItem("gameData") returns null or undefined
+  let gameData = JSON.parse(sessionStorage.getItem("gameData")) || await loadCSV(); 
 
   const favoriteGames = gameData.filter(game => game.favorited);
-
   const templateCard = document.querySelector(".card");
 
   favoriteGames.forEach(game => {
@@ -103,6 +78,29 @@ async function showFavoriteCards() {
     favoritesContainer.appendChild(nextCard); // Add to container
     }
   )
+}
+
+
+async function showWishlistCards() {
+  const wishlistContainer = document.getElementById("wishlists-container");
+  wishlistContainer.innerHTML = ""; // Clear previous content
+
+  // || await loadCSV() is a fallback mechanism in case sessionStorage.getItem("gameData") returns null or undefined
+  let gameData = JSON.parse(sessionStorage.getItem("gameData")) || await loadCSV(); 
+
+  const wishlistGames = gameData.filter(game => game.wishlisted);
+  const templateCard = document.querySelector(".card");
+
+  wishlistGames.forEach(game => {
+    const nextCard = templateCard.cloneNode(true); // Copy template card
+    editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
+    nextCard.style.display = "block"; // Ensure the card is visible
+    wishlistContainer.appendChild(nextCard); // Add to container
+    }
+  )
+
+  console.log("Running showWishlistCards()");
+  console.log("Wishlist Games:", wishlistGames);
 }
 
 
@@ -167,6 +165,47 @@ async function gameDescription() {
 }
 
 
+async function wishlistCard() {
+  if (!selectedGameTitle) {
+    alert("Please select a game first!");
+    return;
+  }
+
+  gameData = await loadCSV();
+  let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
+  
+  if (game.wishlisted === false) { // If the favorite value is false
+    game.wishlisted = !game.wishlisted; // Then set it to true
+    sessionStorage.setItem("gameData", JSON.stringify(gameData)); //Update sessionStorage
+  }
+
+  showWishlistCards();
+  console.log(game.wishlisted);
+}
+
+async function removeWishlistCard() {
+  if (!selectedGameTitle) {
+    alert("Please select a wishlisted game first!");
+    return;
+  }
+
+  gameData = await loadCSV();
+  let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
+
+  if (game.wishlisted === false) { // If the favorite value is false
+    alert("Please select a wishlisted game first")
+  }
+
+  if (game.wishlisted === true) { // If the favorite value is false
+    game.wishlisted = !game.wishlisted; // Then set it to true
+    sessionStorage.setItem("gameData", JSON.stringify(gameData)); //Update sessionStorage
+  }
+
+  showWishlistCards();
+  console.log(game.wishlisted);
+}
+
+
 async function favoriteCard() {
   if (!selectedGameTitle) {
     alert("Please select a game first!");
@@ -174,12 +213,32 @@ async function favoriteCard() {
   }
 
   gameData = await loadCSV();
-
   let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
   
   if (game.favorited === false) { // If the favorite value is false
     game.favorited = !game.favorited; // Then set it to true
+    sessionStorage.setItem("gameData", JSON.stringify(gameData)); //Update sessionStorage
+  }
 
+  showFavoriteCards();
+  console.log(game.favorited);
+}
+
+async function removeFavoriteCard() {
+  if (!selectedGameTitle) {
+    alert("Please select a favorited game first!");
+    return;
+  }
+
+  gameData = await loadCSV();
+  let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
+
+  if (game.favorited === false) { // If the favorite value is false
+    alert("Please select a favorited game first")
+  }
+
+  if (game.favorited === true) { // If the favorite value is false
+    game.favorited = !game.favorited; // Then set it to true
     sessionStorage.setItem("gameData", JSON.stringify(gameData)); //Update sessionStorage
   }
 
