@@ -71,6 +71,15 @@ button {
   margin: 5px;
 }
 
+.filter-button {
+  margin-left: auto; /* Moves button to the right */
+  padding: 10px;
+  background-color: #720606;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 #favorites-container {
   display: flex; /* Arrange cards in a row */
   flex-wrap: wrap; /* Allow wrapping to new rows if needed */

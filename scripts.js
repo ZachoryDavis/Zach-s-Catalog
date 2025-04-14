@@ -27,13 +27,15 @@ if (savedGameData) {
 
   rows.forEach(row => {
     let columns = row.split(","); // Split each row into separate values using a comma (CSV format)
-    if (columns.length >= 5) {
+    if (columns.length >= 6) {
       let title = columns[0].trim(); //.trim() just removes any spaces in front or after title
       let imageURL = columns[1].trim(); // especially here spaces could break my code
       let genre = columns[2].trim().split("|"); //split here allows me to add mult. genres without mult new col.
       let favorited = columns[3]?.trim().toLowerCase() === "true"; // checks if string matched and returns bool
-      let wishlisted = columns[4]?.trim().toLowerCase() === "true";
-      gameData.push({ title, imageURL, genre, favorited, wishlisted });
+      let rating = columns[4].trim();
+      let wishlisted = columns[5]?.trim().toLowerCase() === "true";
+      let cost = columns[6].trim()
+      gameData.push({ title, imageURL, genre, favorited, rating, wishlisted, cost });
     }
   });
 
@@ -73,7 +75,7 @@ async function showFavoriteCards() {
 
   favoriteGames.forEach(game => {
     const nextCard = templateCard.cloneNode(true); // Copy template card
-    editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
+    editCardContent(nextCard, game.title, game.imageURL, [game.rating]); // Populate card
     nextCard.style.display = "block"; // Ensure the card is visible
     favoritesContainer.appendChild(nextCard); // Add to container
     }
@@ -93,7 +95,7 @@ async function showWishlistCards() {
 
   wishlistGames.forEach(game => {
     const nextCard = templateCard.cloneNode(true); // Copy template card
-    editCardContent(nextCard, game.title, game.imageURL, game.genre); // Populate card
+    editCardContent(nextCard, game.title, game.imageURL, [game.cost]); // Populate card
     nextCard.style.display = "block"; // Ensure the card is visible
     wishlistContainer.appendChild(nextCard); // Add to container
     }
@@ -104,7 +106,7 @@ async function showWishlistCards() {
 }
 
 
-function editCardContent(card, newTitle, newImageURL, newGenre) {
+function editCardContent(card, newTitle, newImageURL, newInfo) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
@@ -118,7 +120,7 @@ function editCardContent(card, newTitle, newImageURL, newGenre) {
   const cardList = card.querySelector("ul");
   cardList.innerHTML = ""; // Clear existing list
 
-  newGenre.forEach(detail => {
+  newInfo.forEach(detail => {
     const listItem = document.createElement("li");
     listItem.textContent = detail;
     cardList.appendChild(listItem);
@@ -244,4 +246,38 @@ async function removeFavoriteCard() {
 
   showFavoriteCards();
   console.log(game.favorited);
+}
+
+async function rateCard() {
+  if (!selectedGameTitle) {
+    alert("Please select a favorited game first!");
+    return;
+  }
+
+  gameData = await loadCSV();
+  let game = gameData.find(g => g.title === selectedGameTitle); //find the selected title
+
+  let userInput = prompt("What would you rate this game out of 10?", "0");
+  ratingNumber = parseInt(userInput, 10);
+
+  while (1) {
+    if (isNaN(ratingNumber)) {
+      let userInput = prompt("Please enter a valid number from 0-10.", "0");
+      ratingNumber = parseInt(userInput, 10);
+    }
+    else {
+      break;
+    }
+  }
+
+  if (ratingNumber > 10)
+    ratingNumber = 10;
+  if (ratingNumber < 0)
+    ratingNumber = 0;
+
+  game.rating = "Rating: " + ratingNumber;
+  sessionStorage.setItem("gameData", JSON.stringify(gameData));
+
+  showFavoriteCards();
+  console.log(ratingNumber);
 }
