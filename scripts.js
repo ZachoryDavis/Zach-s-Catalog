@@ -281,3 +281,50 @@ async function rateCard() {
   showFavoriteCards();
   console.log(ratingNumber);
 }
+
+function toggleFilterMenu() {
+  let filterMenu = document.getElementById("filter-menu");
+    filterMenu.style.display = (filterMenu.style.display === "none" || filterMenu.style.display === "") 
+        ? "block" : "none"; //Toggle visability of filter menu
+}
+
+async function filterByGenre(newGenre) {
+  const cardContainer = document.getElementById("card-container");
+    cardContainer.innerHTML = ""; // Clear previous cards
+
+    // Fetch game data properly
+    let gameData = sessionStorage.getItem("gameData"); 
+    if (gameData) {
+        gameData = JSON.parse(gameData);
+    } else {
+        gameData = await loadCSV(); // Only call this if session storage is empty
+    }
+
+    const gamesByGenre = gameData.filter(game =>                                            //Here I filter the genres to return true
+      game.genre.map(g => g.toLowerCase().trim()).includes(newGenre.toLowerCase().trim())); //If the genre array contains newGenre.
+      //.map here reconfigures the genre array so all genres are lowercased with no spaces to limit syntatical error
+
+    console.log("Game Data Before Filtering:", gameData); // Debugging step
+
+    console.log("Filtered Games:", gamesByGenre); // Debugging step
+
+    if (gamesByGenre.length === 0) {
+        alert(`No games found for the genre: ${newGenre}`);
+        return;
+    }
+
+    const templateCard = document.querySelector(".card");
+
+    gamesByGenre.forEach(game => {
+        const nextCard = templateCard.cloneNode(true);
+        editCardContent(nextCard, game.title, game.imageURL, game.genre);
+        cardContainer.appendChild(nextCard);
+    });
+}
+
+/*const gamesByGenre = gameData.filter(game => {
+    let genreArray = game[3]; // Assuming genres are in the fourth element
+    return genreArray.includes(newGenre);
+}); */
+
+/* const gamesByGenre = gameData.filter(game => game.genre.includes(newGenre)); */

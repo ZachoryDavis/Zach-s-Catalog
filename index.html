@@ -9,14 +9,31 @@
 
   <body>
     <header class="main-header">
-      <h1 class="title">MyVideoGameList</h1>
+      <div class="title-container">
+          <h1 class="title">MyVideoGameList</h1>
+      </div>
       <nav class="button-nav">
-        <button onclick="location.href='index.html'">Home</button>
-        <button onclick="location.href='favorites.html'">Favorites</button>
-        <button onclick="location.href='wishlist.html'">Wishlist</button>
+          <button onclick="location.href='index.html'">Home</button>
+          <button onclick="location.href='favorites.html'">Favorites</button>
+          <button onclick="location.href='wishlist.html'">Wishlist</button>
       </nav>
-      <button onclick="filterCard();">Filter</button>
-    </header>
+      <button class="filter-button" onclick="toggleFilterMenu()">Filter</button>
+  </header>
+  <div class="filter-wrapper">
+    <div id="filter-menu" class="filter-container">
+      <button onclick="filterByGenre('Action')">Action</button>
+      <button onclick="filterByGenre('Adventure')">Adventure</button>
+      <button onclick="filterByGenre('Casual')">Casual</button>
+      <button onclick="filterByGenre('Fighting')">Fighting</button>
+      <button onclick="filterByGenre('Indie')">Indie</button>
+      <button onclick="filterByGenre('Metroidvania')">Metroidvania</button>
+      <button onclick="filterByGenre('Roguelike')">Roguelike</button>
+      <button onclick="filterByGenre('RPG')">RPG</button>
+      <button onclick="filterByGenre('Shooter')">Shooter</button>
+      <button onclick="filterByGenre('Soulslike')">Soulslike</button>
+      <button onclick="filterByGenre('Survival')">Survival</button>
+    </div>
+  </div>
     <div id="card-container"></div>  <!-- where dynamic TV show cards will be added using JavaScript -->
     <div class="card" style="display: none" onclick="selectGame(this)">
       <div class="card-content">

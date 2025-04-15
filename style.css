@@ -1,17 +1,25 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   background-color: #2e2e2e;
 }
 
+/* Main Header Styling */
 .main-header {
+  display: flex;
+  flex-direction: column; /* Stack title and navigation */
+  align-items: center; /* Keep everything centered */
   background-color: rgb(210, 41, 41);
-  padding-bottom: 10px;
+  padding: 3px;
+}
+
+/* Title Stays Centered */
+.title-container {
+  width: 100%;
+  text-align: center;
 }
 
 .title {
-  text-align: center;
   margin: 0;
   font-size: 8em;
   font-family: "Helvetica";
@@ -19,12 +27,76 @@ body {
   color: white;
 }
 
+/* Navigation Buttons Group */
+.button-nav {
+  display: flex; /* Align navigation buttons in a row */
+  gap: 10px; /* Add spacing between buttons */
+  margin-top: 10px;
+}
+
+/* General Button Styling */
+button {
+  text-align: center;
+  background-color: #720606;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* Filter Button Positioned Separately */
+.filter-button {
+  align-self: flex-end; /* Push to the right */
+  padding: 10px;
+  background-color: #720606;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-wrapper {
+  position: relative; /* Ensures filter menu stays attached */
+  display: inline-block; /* Keeps it next to the other buttons */
+}
+
+.filter-container {
+  display: none;
+  position: absolute;
+  top: 100%; /* Places it right below the filter button */
+  left: 0; /* Aligns to the right edge of the filter button */
+  width: auto;
+  background-color: #720606;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Ensure buttons inside are stacked */
+.filter-container button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  background-color: white;
+  color: #720606;
+  border: none;
+  cursor: pointer;
+}
+
+/* Card Container */
 #card-container {
   display: flex;
   justify-content: center;
   margin: 20px;
 }
 
+/* Card Styling */
 .card {
   width: 300px;
   border: 1px solid #ccc;
@@ -34,6 +106,7 @@ body {
   background-color: white;
 }
 
+/* Card Content */
 .card-content {
   padding: 20px;
   font-family: "Verdana";
@@ -50,6 +123,7 @@ body {
   height: auto;
 }
 
+/* Footer Styling */
 .footer {
   display: flex;
   justify-content: center;
@@ -57,39 +131,10 @@ body {
   padding: 10px;
 }
 
-button {
-  text-align: center;
-  background-color: #720606;
-  border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
-  border-radius: 10px;
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.filter-button {
-  margin-left: auto; /* Moves button to the right */
-  padding: 10px;
-  background-color: #720606;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-#favorites-container {
-  display: flex; /* Arrange cards in a row */
-  flex-wrap: wrap; /* Allow wrapping to new rows if needed */
-  justify-content: center; /* Center cards horizontally */
-  gap: 10px; /* Adds space between cards */
-}
-
-#wishlists-container {
-  display: flex; /* Arrange cards in a row */
-  flex-wrap: wrap; /* Allow wrapping to new rows if needed */
-  justify-content: center; /* Center cards horizontally */
-  gap: 10px; /* Adds space between cards */
+/* Favorites & Wishlist Containers */
+#favorites-container, #wishlists-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: center; /* Center the cards */
+  gap: 10px; /* Space between cards */
 }
