@@ -89,20 +89,15 @@ button {
   cursor: pointer;
 }
 
-/* Card Container */
 #card-container {
   display: flex;
-  justify-content: center;
-  margin: 20px;
+  flex-wrap: wrap; /* Ensures cards start a new row */
+  justify-content: center; /* Centers cards in each row */
+  gap: 10px; /* Space between cards */
 }
-
-/* Card Styling */
 .card {
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+  width: calc(20% - 10px); /* 5 cards per row */
+  min-width: 250px; /* Prevents excessive shrinking */
   background-color: white;
 }
 

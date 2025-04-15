@@ -1,6 +1,10 @@
 
 
-//ADD EXCEPTION CHECKS FOR ALL FETCH CASES TO ENSURE NO THROW OR ROLLBACK
+//TODO: Add filter that returns all games on home page
+//TODO: Add filter on Favorite page that sorts all games by rating
+//TODO: Add filter on Wishlist page that sorts all games by cost
+//TODO: Fix the filter drop bar to aligne with filter button
+//TODO: Add UI to color selected card to show card is selected
 
 async function loadCSV() {
 

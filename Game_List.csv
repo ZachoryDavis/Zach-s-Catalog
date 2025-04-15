@@ -1,6 +1,61 @@
 title,imageURL,genre, favorited, rating, wishlisted, cost
+Assassin's Creed: Black Flag,https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Assassin%27s_Creed_IV_-_Black_Flag_cover.jpg/250px-Assassin%27s_Creed_IV_-_Black_Flag_cover.jpg, Adventure | Fighting | Stealth, false, Rating: N/A, false, Cost: $40
+Batman: Arkham City, https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Batman_Arkham_City_Game_Cover.jpg/250px-Batman_Arkham_City_Game_Cover.jpg, Action |Adventure | Stealth, false, Rating: N/A, false, Cost: $20
 The Binding of Isaac Rebirth,https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/The_Binding_of_Issac_Rebirth_cover.jpg/250px-The_Binding_of_Issac_Rebirth_cover.jpg, Action | Roguelike | Shooter, false, Rating: N/A, false, Cost: $15
+Bioshock, https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/BioShock_cover.jpg/220px-BioShock_cover.jpg, RPG | Shooter | Survival, false, Rating: N/A, false, Cost: $20
+Bloodborne, https://upload.wikimedia.org/wikipedia/en/thumb/6/68/Bloodborne_Cover_Wallpaper.jpg/250px-Bloodborne_Cover_Wallpaper.jpg, Action | RPG | Survival, false, Rating: N/A, false, Cost: $20
+Borderlands 2, https://upload.wikimedia.org/wikipedia/en/thumb/5/51/Borderlands_2_cover_art.png/250px-Borderlands_2_cover_art.png, Adventure | RPG | Shooter, false, Rating: N/A, false, Cost: $20
+Call of Duty: Black Ops 2, https://upload.wikimedia.org/wikipedia/en/0/05/Call_of_Duty_Black_Ops_II_box_artwork.png, Action | Fighting | Shooter, false, Rating: N/A, false, Cost: $60
+Castlevania: Symphony of the Night, https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Castlevania_SOTN_PAL.jpg/220px-Castlevania_SOTN_PAL.jpg, Fighting | Metroidvania | RPG, false, Rating: N/A, false, Cost: $10
+Chrono Trigger, https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Chrono_Trigger.jpg/220px-Chrono_Trigger.jpg, Action | Adventure | RPG, false, Rating: N/A, false, Cost: $15
+Cyberpunk 2077, https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/250px-Cyberpunk_2077_box_art.jpg, Action | RPG | Shooter, false, Rating: N/A, false, Cost: $60
+Dark Souls, https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Dark_Souls_Cover_Art.jpg/250px-Dark_Souls_Cover_Art.jpg, Action | RPG | Soulslike, false, Rating: N/A, false, Cost: $40
+Diablo 2, https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Diablo_II_Coverart.png/250px-Diablo_II_Coverart.png, Action | RPG | Strategy, false, Rating: N/A, false, Cost: $10
+Disco Elysium, https://upload.wikimedia.org/wikipedia/en/thumb/0/0d/Disco_Elysium_Poster.jpeg/250px-Disco_Elysium_Poster.jpeg, Action | Adventure | RPG, false, Rating: N/A, false, Cost: $40
+Dishonored, https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Dishonored_box_art_Bethesda.jpg/250px-Dishonored_box_art_Bethesda.jpg, RPG | Shooter | Stealth, false, Rating: N/A, false, Cost: $10
+Dragon Age: Origins, https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Dragon_Age_Origins_cover.png/250px-Dragon_Age_Origins_cover.png, Action | Adventure | RPG, false, Rating: N/A, false, Cost: $40
 Elden Ring, https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Elden_Ring_Box_art.jpg/250px-Elden_Ring_Box_art.jpg, Action | Fighting | Soulslike, false, Rating: N/A, false, Cost: $60
+The Elder Scrolls 5: Skyrim, https://upload.wikimedia.org/wikipedia/en/thumb/1/15/The_Elder_Scrolls_V_Skyrim_cover.png/250px-The_Elder_Scrolls_V_Skyrim_cover.png, Action | Fighting | RPG, false, Rating: N/A, false, Cost: $40
+Fallout: New Vegas, https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Fallout_New_Vegas.jpg/250px-Fallout_New_Vegas.jpg, Adventure | RPG | Shooter, false, Rating: N/A, false, Cost: $10
+Final Fantasy VII, https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/FFVIIRemake.png/250px-FFVIIRemake.png, Adventure | Fighting | RPG, false, Rating: N/A, false, Cost: $12
+Ghost of Tsushima, https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Ghost_of_Tsushima.jpg/250px-Ghost_of_Tsushima.jpg, Fighting | RPG | Stealth, false, Rating: N/A, false, Cost: $60
+Goldeneye, https://upload.wikimedia.org/wikipedia/en/thumb/2/24/GoldenEye_-_UK_cinema_poster.jpg/250px-GoldenEye_-_UK_cinema_poster.jpg, Action | Adventure | Shooter, false, Rating: N/A, false, Cost: $5
+God of War, https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg/250px-God_of_War_Ragnar%C3%B6k_cover.jpg, Action | Fighting | RPG, false, Rating: N/A, false, Cost: $60
+GTA 5, https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/Grand_Theft_Auto_V.png/250px-Grand_Theft_Auto_V.png, Adventure | RPG | Shooter, false, Rating: N/A, false, Cost: $30
+Half-Life 2, https://upload.wikimedia.org/wikipedia/en/thumb/2/25/Half-Life_2_cover.jpg/250px-Half-Life_2_cover.jpg, Action | Shooter | Survival, false, Rating: N/A, false, Cost: $10
+Hades, https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Hades_cover_art.jpg/220px-Hades_cover_art.jpg, Action | Roguelike | RPG, false, Rating: N/A, false, Cost: $20
+Halo: Combat Evolved, https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg/250px-Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg, Action | RPG | Shooter, false, Rating: N/A, false, Cost: $10
 Hollow Knight,https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Hollow_Knight_first_cover_art.webp/220px-Hollow_Knight_first_cover_art.webp.png, Action | Metroidvania | Soulslike, false, Rating: N/A, false, Cost: $15
+Horizon Zero Dawn, https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Horizon_Zero_Dawn.jpg/250px-Horizon_Zero_Dawn.jpg, Action | RPG | Shooter, false, Rating: N/A, false, Cost: $50
+Insomniac's Spider-Man, https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/Spider-Man_PS4_cover.jpg/250px-Spider-Man_PS4_cover.jpg, Action | Fighting | RPG, false, Rating: N/A, false, Cost: $40
+Kingdom Hearts 2, https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/Kingdom_Hearts_II_%28PS2%29.jpg/220px-Kingdom_Hearts_II_%28PS2%29.jpg, Action | Fighting | RPG, false, Rating: N/A, false, Cost: $10
+The Last of Us, https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg/220px-Video_Game_Cover_-_The_Last_of_Us.jpg, Action | Stealth | Survival, false, Rating: N/A, false, Cost: $60
+League of Legends, https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/League_of_Legends_2019_vector.svg/250px-League_of_Legends_2019_vector.svg.png, Fighting | RPG | Strategy, false, Rating: N/A, false, Cost: $0
+The Legend of Zelda: Ocarina of Time, https://upload.wikimedia.org/wikipedia/en/thumb/3/30/The_Legend_of_Zelda_Ocarina_of_Time_3D_box_art.png/250px-The_Legend_of_Zelda_Ocarina_of_Time_3D_box_art.png, Adventure | Fighting | RPG, false, Rating: N/A, false, Cost: $25
+Mass Effect 2, https://upload.wikimedia.org/wikipedia/en/thumb/0/05/MassEffect2_cover.PNG/250px-MassEffect2_cover.PNG, Adventure | RPG | Shooter, false, Rating: N/A, false, Cost: $20
+Metal Gear Solid, https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Metal_Gear_Solid_cover_art.png/250px-Metal_Gear_Solid_cover_art.png, Action | Shooter | Stealth, false, Rating: N/A, false, Cost: $20
+Metroid Prine, https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/MetroidPrimebox.jpg/250px-MetroidPrimebox.jpg, Adventure | Metroidvania | Shooter, false, Rating: N/A, false, Cost: $40
 Minecraft, https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Minecraft_2024_cover_art.png/250px-Minecraft_2024_cover_art.png, Action | Casual | Survival, false, Rating: N/A, false, Cost: $30
+Monster Hunter: World, https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Monster_Hunter_World_cover_art.jpg/250px-Monster_Hunter_World_cover_art.jpg, Action | Fighting | RPG, false, Rating: N/A, false, Cost: $30
+NieR: Automata, https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Nier_Automata_cover_art.jpg/250px-Nier_Automata_cover_art.jpg, Adventure | Fighting | RPG, false, Rating: N/A, false, Cost: $40
 Omori,https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Omori_cover.jpg/250px-Omori_cover.jpg, Adventure | Indie | RPG, false, Rating: N/A, false, Cost: $20
+Outer Wilds, https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Outer_Wilds_Steam_artwork.jpg/250px-Outer_Wilds_Steam_artwork.jpg, Adventure | Indie | Strategy, false, Rating: N/A, false, Cost: $20
+Persona 5, https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Persona_5_cover_art.jpg/250px-Persona_5_cover_art.jpg, Action | Adventure | RPG,  false, Rating: N/A, false, Cost: $60
+Pokemon Emerald, https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/PokemonEmeraldBox.jpg/250px-PokemonEmeraldBox.jpg, Adventure | Casual | Strategy, false, Rating: N/A, false, Cost: $0
+Portal 2, https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Portal2cover.jpg/250px-Portal2cover.jpg, Action | Shooter | Strategy, false, Rating: N/A, false, Cost: $10
+Red Dead Redemption 2, https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Red_Dead_Redemption_II.jpg/250px-Red_Dead_Redemption_II.jpg, Action | Adventure | Shooter, false, Rating: N/A, false, Cost: $60
+Resident Evil 4, https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Resident_Evil_4_remake_cover_art.jpg/250px-Resident_Evil_4_remake_cover_art.jpg, Shooter | Strategy | Survival, false, Rating: N/A, false, Cost: $40
+Sekiro: Shadows Die Twice, https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Sekiro_art.jpg/250px-Sekiro_art.jpg, Action | RPG | Soulslike, false, Rating: N/A, false, Cost: $60
+Shadow of the Colossus, https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Shadow_of_the_Colossus_%282005%29_cover.jpg/250px-Shadow_of_the_Colossus_%282005%29_cover.jpg, Action | Fighting | Strategy, false, Rating: N/A, false, Cost: $20
+Silent Hill 2, https://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Silent_Hill_2_remake_cover.jpg/250px-Silent_Hill_2_remake_cover.jpg, Adventure | Strategy | Survival, false, Rating: N/A, false, Cost: $70
+Star Wars: Battlefront 2, https://staticdelivery.nexusmods.com/Images/games/4_3/tile_2229.jpg, Action | Fighting | Shooter, false, Rating: N/A, false, Cost: $40
+Stardew Vally, https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Logo_of_Stardew_Valley.png/250px-Logo_of_Stardew_Valley.png, Adventure | Casual | Indie, false, Rating: N/A, false, Cost: $15
+StarCraft, https://upload.wikimedia.org/wikipedia/en/thumb/9/93/StarCraft_box_art.jpg/220px-StarCraft_box_art.jpg, Adventure | RPG | Strategy, false, Rating: N/A, false, Cost: $5
+Super Mario 64, https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Super_Mario_64_box_cover.jpg/250px-Super_Mario_64_box_cover.jpg, Adventure | Casual | Strategy, false, Rating: N/A, false, Cost: $15
+Super Smash Bros Ultimate, https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Super_Smash_Bros._Ultimate.jpg/220px-Super_Smash_Bros._Ultimate.jpg, Action | Fighting | Survival, false, Rating: N/A, false, Cost: $60
+Tetris, https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Tetris_logo.png/250px-Tetris_logo.png, Action | Casual | Strategy, false, Rating: N/A, false, Cost: $0
+Terraria, https://staticg.sportskeeda.com/editor/2022/07/e0a06-16569271844590-1920.jpg, Adventure | Casual | Survival, false, Rating: N/A, false, Cost: $10
+Undertale, https://fontmeme.com/images/undertale-font.jpg, Adventure | Indie | RPG, false, Rating: N/A, false, Cost: $15
+Uncharted 4, https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/Uncharted_4_box_artwork.jpg/250px-Uncharted_4_box_artwork.jpg, Action | Stealth | Strategy, false, Rating: N/A, false, Cost: $10
+Warcraft 3, https://upload.wikimedia.org/wikipedia/en/thumb/6/66/WarcraftIII.jpg/250px-WarcraftIII.jpg, Action | RPG | Strategy, false, Rating: N/A, false, Cost: $0
+The Witcher 3, https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Witcher_3_cover_art.jpg/250px-Witcher_3_cover_art.jpg, Action | Fighting | RPG, false, Rating: N/A, false, Cost: $40
