@@ -13,17 +13,26 @@ html, body {
   padding: 3px;
 }
 
-/* Title Stays Centered */
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Space between filter button and nav buttons */
+  align-items: center;
+  width: 100%; /* Make it span the full width of the header */
+  padding: 0 10px; /* Add some padding for spacing */
+}
+
+/* Title Container Styling */
 .title-container {
   width: 100%;
-  text-align: center;
+  text-align: center; /* Center the title horizontally */
+  margin-bottom: 10px; /* Add spacing between the title and the buttons */
 }
 
 .title {
   margin: 0;
-  font-size: 8em;
-  font-family: "Helvetica";
-  font-weight: normal;
+  font-size: 3em; /* Adjust the font size as needed */
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
   color: white;
 }
 
@@ -51,7 +60,7 @@ button {
 
 /* Filter Button Positioned Separately */
 .filter-button {
-  align-self: flex-end; /* Push to the right */
+  align-self: flex-start; /* Align the filter button to the left */
   padding: 10px;
   background-color: #720606;
   color: white;
@@ -60,15 +69,14 @@ button {
 }
 
 .filter-wrapper {
-  position: relative; /* Ensures filter menu stays attached */
-  display: inline-block; /* Keeps it next to the other buttons */
+  position: relative; /* Keep the filter container positioned relative to the header */
 }
 
 .filter-container {
   display: none;
   position: absolute;
   top: 100%; /* Places it right below the filter button */
-  left: 0; /* Aligns to the right edge of the filter button */
+  left: 0; /* Aligns it to the left edge of the filter button */
   width: auto;
   background-color: #720606;
   padding: 10px;
@@ -81,6 +89,7 @@ button {
 .filter-container button {
   display: block;
   width: 100%;
+  min-width: 100px;
   margin: 5px 0;
   padding: 8px;
   background-color: white;
@@ -118,12 +127,22 @@ button {
   height: auto;
 }
 
+.card.selected {
+  background-color:#D3D3D3; /* Blue background for selected card */
+  color: white; /* Optional: Change text color for better contrast */
+}
+
 /* Footer Styling */
 .footer {
+  position: fixed; /* Fix the footer to the screen */
+  bottom: 0; /* Align it to the bottom of the screen */
+  left: 0; /* Align it to the left edge of the screen */
+  width: 100%; /* Make it span the full width of the screen */
   display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center; /* Center the buttons horizontally */
+  background-color: #2e2e2e; /* Semi-transparent background */
   padding: 10px;
+  z-index: 1000; /* Ensure it stays above other content */
 }
 
 /* Favorites & Wishlist Containers */
@@ -132,4 +151,10 @@ button {
   flex-wrap: wrap; /* Allow wrapping */
   justify-content: center; /* Center the cards */
   gap: 10px; /* Space between cards */
+}
+
+#card-container,
+#favorites-container,
+#wishlists-container {
+  padding-bottom: 80px; /* Add enough space to account for the footer height */
 }

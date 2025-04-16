@@ -1,10 +1,4 @@
-
-
-//TODO: Add filter that returns all games on home page
-//TODO: Add filter on Favorite page that sorts all games by rating
-//TODO: Add filter on Wishlist page that sorts all games by cost
 //TODO: Fix the filter drop bar to aligne with filter button
-//TODO: Add UI to color selected card to show card is selected
 
 async function loadCSV() {
 
@@ -140,9 +134,25 @@ document.addEventListener("DOMContentLoaded", showHomeCards);
 
 
 let selectedGameTitle = ""; //we can store a selected card title to use later
+let selectedGameCard = null; // Keep track of the currently selected card
 
 function selectGame(card) {
-  selectedGameTitle = card.querySelector("h2").textContent; // Get game title from the card
+  // If a card is already selected, remove the "selected" class
+  if (selectedGameCard) {
+    selectedGameCard.classList.remove("selected");
+  }
+
+  // If the clicked card is the same as the currently selected card, deselect it
+  if (selectedGameCard === card) {
+    selectedGameCard = null; // Deselect the card
+    selectedGameTitle = ""; // Clear the selected game title
+  } else {
+    // Otherwise, select the new card
+    card.classList.add("selected");
+    selectedGameCard = card; // Update the selected card
+    selectedGameTitle = card.querySelector("h2").textContent; // Update the selected game title
+  }
+
   console.log("Selected Game:", selectedGameTitle); // Debugging log
 }
 
@@ -295,15 +305,14 @@ function toggleFilterMenu() {
 async function filterByGenre(newGenre) {
   const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = ""; // Clear previous cards
+ 
+    let gameData = JSON.parse(sessionStorage.getItem("gameData")) || await loadCSV(); 
 
-    // Fetch game data properly
-    let gameData = sessionStorage.getItem("gameData"); 
-    if (gameData) {
-        gameData = JSON.parse(gameData);
-    } else {
-        gameData = await loadCSV(); // Only call this if session storage is empty
+    if (newGenre.toLowerCase().trim() === "allgames") {
+        showHomeCards(); // Show all games if "All Games" is selected
+        return;
     }
-
+  
     const gamesByGenre = gameData.filter(game =>                                            //Here I filter the genres to return true
       game.genre.map(g => g.toLowerCase().trim()).includes(newGenre.toLowerCase().trim())); //If the genre array contains newGenre.
       //.map here reconfigures the genre array so all genres are lowercased with no spaces to limit syntatical error
@@ -326,9 +335,110 @@ async function filterByGenre(newGenre) {
     });
 }
 
-/*const gamesByGenre = gameData.filter(game => {
-    let genreArray = game[3]; // Assuming genres are in the fourth element
-    return genreArray.includes(newGenre);
-}); */
+async function filterByLowestRating() {
+  const favoritesContainer = document.getElementById("favorites-container"); // Define favoritesContainer
+  favoritesContainer.innerHTML = ""; 
 
-/* const gamesByGenre = gameData.filter(game => game.genre.includes(newGenre)); */
+  let gameData = JSON.parse(sessionStorage.getItem("gameData")) || await loadCSV(); 
+
+  // Filter only favorited games
+  const favoriteGames = gameData.filter(game => game.favorited);
+
+  favoriteGames.forEach(game => {
+    let ratingString = game.rating.substring(8);
+    game.ratingNumber = isNaN(parseInt(ratingString, 10)) ? 0 : parseInt(ratingString, 10);
+  });
+  // This will add a new property ratingNumber to each game object
+  // This property will be used to sort the games by rating
+
+  // Sort the games by ratingNumber in ascending order
+  for (let i = 0; i < favoriteGames.length; i++) {
+    let lowest = i;
+    for (let j = i + 1; j < favoriteGames.length; j++) {
+      if (favoriteGames[j].ratingNumber < favoriteGames[lowest].ratingNumber) {
+        lowest = j;
+      }
+    }
+    if (lowest !== i) {
+      // Swap
+      [favoriteGames[i], favoriteGames[lowest]] = [favoriteGames[lowest], favoriteGames[i]];
+    }
+  }
+
+  const templateCard = document.querySelector(".card");
+
+  favoriteGames.forEach(game => {
+    const nextCard = templateCard.cloneNode(true); // Copy template card
+    editCardContent(nextCard, game.title, game.imageURL, [`Rating: ${game.ratingNumber}`]); // Populate card
+    nextCard.style.display = "block"; // Ensure the card is visible
+    favoritesContainer.appendChild(nextCard); // Add to container
+  });
+}
+
+
+async function filterByHighestRating() {
+  const favoritesContainer = document.getElementById("favorites-container"); // Define favoritesContainer
+  favoritesContainer.innerHTML = ""; 
+
+  let gameData = JSON.parse(sessionStorage.getItem("gameData")) || await loadCSV(); 
+
+  // Filter only favorited games
+  const favoriteGames = gameData.filter(game => game.favorited);
+
+  favoriteGames.forEach(game => {
+    let ratingString = game.rating.substring(8);
+    game.ratingNumber = isNaN(parseInt(ratingString, 10)) ? 0 : parseInt(ratingString, 10);
+  });
+  // This will add a new property ratingNumber to each game object
+  // This property will be used to sort the games by rating
+
+  // Sort the games by ratingNumber in decending order
+  for (let i = 0; i < favoriteGames.length; i++) {
+    let highest = i;
+    for (let j = i + 1; j < favoriteGames.length; j++) {
+      if (favoriteGames[j].ratingNumber > favoriteGames[highest].ratingNumber) {
+        highest = j;
+      }
+    }
+    if (highest !== i) {
+      // Swap
+      [favoriteGames[highest], favoriteGames[i]] = [favoriteGames[i], favoriteGames[highest]];
+    }
+  }
+
+  const templateCard = document.querySelector(".card");
+
+  favoriteGames.forEach(game => {
+    const nextCard = templateCard.cloneNode(true); // Copy template card
+    editCardContent(nextCard, game.title, game.imageURL, [`Rating: ${game.ratingNumber}`]); // Populate card
+    nextCard.style.display = "block"; // Ensure the card is visible
+    favoritesContainer.appendChild(nextCard); // Add to container
+  });
+}
+
+async function filterByCost(newLowCost, newHighCost) {
+  const wishlistContainer = document.getElementById("wishlists-container"); // Define wishlistContainer
+  wishlistContainer.innerHTML = ""; 
+
+  let gameData = JSON.parse(sessionStorage.getItem("gameData")) || await loadCSV(); 
+
+  // Filter only wishlisted games within the cost range
+  const filteredWishlistGames = gameData.filter(game => {
+    if (game.wishlisted) {
+      let costString = game.cost.substring(7); // Extract the cost value
+      let costNumber = parseInt(costString, 10); // Convert cost to a number
+      return costNumber >= parseInt(newLowCost, 10) && costNumber <= parseInt(newHighCost, 10);
+    }
+    return false;
+  });
+
+  const templateCard = document.querySelector(".card");
+
+  // Display the filtered games
+  filteredWishlistGames.forEach(game => {
+    const nextCard = templateCard.cloneNode(true); // Copy template card
+    editCardContent(nextCard, game.title, game.imageURL, [`Cost: $${game.cost}`]); // Populate card
+    nextCard.style.display = "block"; // Ensure the card is visible
+    wishlistContainer.appendChild(nextCard); // Add to container
+  });
+}

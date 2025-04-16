@@ -14,7 +14,18 @@
             <button onclick="location.href='favorites.html'">Favorites</button>
             <button onclick="location.href='wishlist.html'">Wishlist</button>
         </nav>
+        <button class="filter-button" onclick="toggleFilterMenu()">Filter</button>
       </header>
+      <div class="filter-wrapper">
+        <div id="filter-menu" class="filter-container">
+          <button onclick="filterByCost('61', '99')">$61+</button>
+          <button onclick="filterByCost('46', '60')">$46-$60</button>
+          <button onclick="filterByCost('31', '45')">$31-$45</button>
+          <button onclick="filterByCost('16', '30')">$16-$30</button>
+          <button onclick="filterByCost('1', '15')">$1-$15</button>
+          <button onclick="filterByCost('0', '0')">Free</button>
+        </div>
+    </div>
       <div id="wishlists-container"></div>
       <div class="card" style="display: none" onclick="selectGame(this)">
         <div class="card-content">

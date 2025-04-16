@@ -16,7 +16,14 @@
             <button onclick="location.href='favorites.html'">Favorites</button>
             <button onclick="location.href='wishlist.html'">Wishlist</button>
         </nav>
+        <button class="filter-button" onclick="toggleFilterMenu()">Filter</button>
       </header>
+      <div class="filter-wrapper">
+        <div id="filter-menu" class="filter-container">
+            <button onclick="filterByHighestRating('Highest')">Highest</button>
+            <button onclick="filterByLowestRating('Lowest')">Lowest</button>
+        </div>
+    </div>
       <div id="favorites-container"></div>
       <div class="card" style="display: none" onclick="selectGame(this)">
         <div class="card-content">
