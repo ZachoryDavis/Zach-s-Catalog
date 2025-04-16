@@ -1,4 +1,3 @@
-//TODO: Fix the filter drop bar to aligne with filter button
 
 async function loadCSV() {
 

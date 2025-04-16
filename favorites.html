@@ -20,6 +20,7 @@
       </header>
       <div class="filter-wrapper">
         <div id="filter-menu" class="filter-container">
+            <button onclick="showFavoriteCards()">ABC</button>
             <button onclick="filterByHighestRating('Highest')">Highest</button>
             <button onclick="filterByLowestRating('Lowest')">Lowest</button>
         </div>
@@ -38,7 +39,7 @@
       </div>
       <div class="footer">
         <button onclick="removeFavoriteCard();">Remove Favorite!</button>
-        <button onclick="rateCard();">Rate Game!!</button>
+        <button onclick="rateCard();">Rate Game!</button>
       </div>
       <script>
         document.addEventListener("DOMContentLoaded", showFavoriteCards);
